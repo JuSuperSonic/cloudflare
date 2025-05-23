@@ -1,9 +1,0 @@
-bucket                      = "terraform-tfstate"
-key                         = "envs/dev/terraform.tfstate"
-region                      = "auto"
-endpoint                    = "https://<your-account-id>.r2.cloudflarestorage.com"
-access_key                  = "YOUR_ACCESS_KEY"
-secret_key                  = "YOUR_SECRET_KEY"
-skip_credentials_validation = true
-skip_metadata_api_check     = true
-force_path_style            = true

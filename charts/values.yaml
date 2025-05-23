@@ -1,7 +1,7 @@
 cloudflare:
-  account: 
-  tunnelName: k3s-vlk-colima-uz2a0i
-  tunnelId: 
+  account: b528edbed278e9d9b349655ff237bcbe
+  tunnelName: k3s-vlk-tofu-zb7a7
+  tunnelId: ecd3f349-af68-4891-bf0c-909d698f4863
   secret: ""
   ingress:
     - hostname: warp.valkhium.xyz
@@ -12,7 +12,7 @@ image:
   pullPolicy: IfNotPresent
   tag: 2025.5.0
 
-replicaCount: 2
+replicaCount: 1
 
 resources:
   limits:
