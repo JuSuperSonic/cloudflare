@@ -1,7 +1,7 @@
 cloudflare:
-  account: b528edbed278e9d9b349655ff237bcbe
-  tunnelName: k3s-vlk-tofu-zb7a7
-  tunnelId: ecd3f349-af68-4891-bf0c-909d698f4863
+  account: ""
+  tunnelName: ""
+  tunnelId: ""
   secret: ""
   ingress:
     - hostname: warp.valkhium.xyz
