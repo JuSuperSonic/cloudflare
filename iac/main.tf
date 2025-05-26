@@ -1,3 +1,4 @@
+# R2 Bucket to store backend state.
 resource "cloudflare_r2_bucket" "r2_bucket" {
   account_id    = var.account_id
   name          = var.r2_bucket_name
@@ -5,7 +6,15 @@ resource "cloudflare_r2_bucket" "r2_bucket" {
   storage_class = "Standard"
 }
 
-locals {
+# Create cloudflare tunnel configuration for Cloudflared.
+module "cloudflare_tunnel" {
+  source        = "./modules/cloudflare-tunnel"
+  account_id    = var.account_id
+  zone_id       = var.zone_id
+  domain        = var.domain
+  tunnel_name   = var.tunnel_cloudflared_name
+  tunnel_secret = var.tunnel_cloudflared_secret
+
   subdomains = {
     atlas = {
       proxied = false
@@ -16,22 +25,4 @@ locals {
       ttl     = 1
     }
   }
-}
-
-resource "cloudflare_dns_record" "tunnel_subdomains" {
-  for_each = local.subdomains
-
-  zone_id = var.zone_id
-  comment = "Subdomain for Tunnel."
-  content = format("%s.cfargotunnel.com", cloudflare_zero_trust_tunnel_cloudflared.tunnel_cloudflared.id)
-  name    = format("%s.%s", each.key, var.domain)
-  proxied = each.value.proxied
-  ttl     = each.value.ttl
-  type    = "CNAME"
-}
-resource "cloudflare_zero_trust_tunnel_cloudflared" "tunnel_cloudflared" {
-  account_id    = var.account_id
-  name          = var.tunnel_name
-  config_src    = "local"
-  tunnel_secret = var.tunnel_cloudflared_secret
 }

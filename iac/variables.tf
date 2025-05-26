@@ -43,7 +43,7 @@ variable "cloudflare_access_secret" {
   # ephemeral   = true
 }
 
-variable "tunnel_name" {
+variable "tunnel_cloudflared_name" {
   description = "Cloudflared Tunnel Name."
   type        = string
 }
