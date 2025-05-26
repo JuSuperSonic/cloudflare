@@ -14,7 +14,7 @@ output "domain" {
 }
 
 output "dns_records" {
-  description = "DNS records."
+  description = "Subdomain and associated DNS records."
   value = {
     for name, record in module.cloudflare_tunnel.dns_records :
     format("%s.%s", name, var.domain) => record.content
