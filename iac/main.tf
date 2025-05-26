@@ -5,26 +5,30 @@ resource "cloudflare_r2_bucket" "r2_bucket" {
   storage_class = "Standard"
 }
 
-resource "cloudflare_dns_record" "atlas_subdomain" {
+locals {
+  subdomains = {
+    atlas = {
+      proxied = false
+      ttl     = 60
+    }
+    warp = {
+      proxied = true
+      ttl     = 1
+    }
+  }
+}
+
+resource "cloudflare_dns_record" "tunnel_subdomains" {
+  for_each = local.subdomains
+
   zone_id = var.zone_id
   comment = "Subdomain for Tunnel."
   content = format("%s.cfargotunnel.com", cloudflare_zero_trust_tunnel_cloudflared.tunnel_cloudflared.id)
-  name    = format("atlas.%s", var.domain)
-  proxied = false
-  ttl     = 60
+  name    = format("%s.%s", each.key, var.domain)
+  proxied = each.value.proxied
+  ttl     = each.value.ttl
   type    = "CNAME"
 }
-
-resource "cloudflare_dns_record" "warp_subdomain" {
-  zone_id = var.zone_id
-  comment = "Subdomain for Tunnel."
-  content = format("%s.cfargotunnel.com", cloudflare_zero_trust_tunnel_cloudflared.tunnel_cloudflared.id)
-  name    = format("warp.%s", var.domain)
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-}
-
 resource "cloudflare_zero_trust_tunnel_cloudflared" "tunnel_cloudflared" {
   account_id    = var.account_id
   name          = var.tunnel_name
