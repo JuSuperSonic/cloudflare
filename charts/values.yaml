@@ -6,6 +6,8 @@ cloudflare:
   ingress:
     - hostname: warp.valkhium.xyz
       service: http://vlk-warp.vlk-gateway.svc.cluster.local:80
+    - hostname: atlas.valkhium.xyz
+      service: http://vlk-atlas.vlk-worker.svc.cluster.local:80
 
 image:
   repository: cloudflare/cloudflared
