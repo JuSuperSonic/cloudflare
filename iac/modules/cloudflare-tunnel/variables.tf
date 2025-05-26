@@ -1,25 +1,25 @@
 variable "account_id" {
-  description = "Cloudflare account ID"
+  description = "Cloudflare account Id."
   type        = string
 }
 
 variable "zone_id" {
-  description = "Cloudflare Zone ID"
+  description = "Cloudflare Zone Id."
   type        = string
 }
 
 variable "domain" {
-  description = "Domain name, e.g. example.com"
+  description = "Domain name."
   type        = string
 }
 
 variable "tunnel_name" {
-  description = "Name for the Cloudflared tunnel"
+  description = "Name for the Cloudflared tunnel."
   type        = string
 }
 
 variable "tunnel_secret" {
-  description = "Tunnel secret"
+  description = "Cloudflare tunnel secret."
   type        = string
   sensitive   = true
   # ephemeral   = true
