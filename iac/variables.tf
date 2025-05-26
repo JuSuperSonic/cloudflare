@@ -1,6 +1,7 @@
 variable "cloudflare_api_token" {
   description = "Api Token to manage Cloudflare resources."
   type        = string
+  # ephemeral   = true
 }
 
 variable "zone_id" {
@@ -9,7 +10,7 @@ variable "zone_id" {
 }
 
 variable "account_id" {
-  description = "Account Id"
+  description = "Account Id."
   type        = string
 }
 
@@ -21,6 +22,7 @@ variable "domain" {
 variable "tunnel_cloudflared_secret" {
   description = "Cloudflared Tunnel Secret."
   type        = string
+  # ephemeral   = true
 }
 
 variable "r2_bucket_name" {
@@ -32,14 +34,16 @@ variable "r2_bucket_name" {
 variable "cloudflare_access_key" {
   description = "Acces Key."
   type        = string
+  # ephemeral   = true
 }
 
 variable "cloudflare_access_secret" {
-  description = "Access Secret"
+  description = "Cloudflared Access Secret."
   type        = string
+  # ephemeral   = true
 }
 
 variable "tunnel_name" {
-  description = "Cloudflared Tunnel Name"
+  description = "Cloudflared Tunnel Name."
   type        = string
 }
