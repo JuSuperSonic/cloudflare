@@ -1,0 +1,23 @@
+cloudflare:
+  account: ""
+  tunnelName: ""
+  tunnelId: ""
+  secret: ""
+  ingress:
+    - hostname: app.example.com
+      service: http://svc-name.svc-namespace.svc.cluster.local:80
+
+image:
+  repository: cloudflare/cloudflared
+  pullPolicy: IfNotPresent
+  tag: 2025.5.0
+
+replicaCount: 2
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
